@@ -1,0 +1,60 @@
+{
+    "commands": {
+        "play": {
+            "short": "Plays a song from YouTube",
+            "long": "Searches for a song on YouTube and then plays it",
+            "syntax": "play <song name>"
+        },
+        "search": {
+            "short": "Short Description TBD",
+            "long": "Searches YouTube for songs, and returns the top 10 hits. Choose song to play with `playSearch`.",
+            "syntax": "search <song name>"
+        },
+        "playSearch": {
+            "short": "Plays selected song from `search`",
+            "long": "Plays selected song from the list returned by `search`",
+            "syntax": "playSearch <search index>"
+        },
+        "skip": {
+            "short": "Plays next song",
+            "long": "Skips current song and plays next if available",
+            "syntax": "skip"
+        },
+        "next": {
+            "short": "Plays next song",
+            "long": "Skips current song and plays next if available",
+            "syntax": "next"
+        },
+        "stop": {
+            "short": "Stops playback and clears queue",
+            "long": "Stops playback, clears queue and disconnects",
+            "syntax": "stop"
+        },
+        "playSpotify": {
+            "short": "Plays a Spotify playlist",
+            "long": "Gets song from a Spotify playlists, searches for them on YouTube and then plays them. Get the playlist URL by clicking on the three dots next to the playlist name, then \"Share\", then \"Copy URL\"",
+            "syntax": "playSpotify <Spotify playlist URL>"
+        },
+        "config": {
+            "short": "Edit server configuration",
+            "long": "Edit server configuration. Only available for Grufkork.",
+            "syntax": "config <operation (read|write)> <property> <value>"
+        },
+        "shuffle": {
+            "short": "Shuffles queue",
+            "long": "Shuffles queue",
+            "syntax": "shuffle"
+        },
+        "help": {
+            "short": "Displays help",
+            "long": "Displays general help or help for a command",
+            "syntax": "help [command]"
+        },
+        "queue": {
+            "short": "Displays queue",
+            "long": "Displays queue",
+            "syntax": "Queue"
+        }
+    },
+    "about": "**Help for DorkBot commands**\nTo get help for a specific command, use help [command name].\nAll commands requires a prefix to run (defaults to `!`)\nParameters in <> are required, those in [] are optional."
+}
