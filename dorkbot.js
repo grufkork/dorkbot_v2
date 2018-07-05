@@ -44,6 +44,12 @@ const games = {
     "Other": "Other"
 };
 
+const nootDootToot = {
+    "doot": "./assets/skull_trumpet.mp3",
+    "noot": "./assets/nootnoot.mp3",
+    "toot": "./assets/airhorn.mp3"
+};
+
 /*function setGame(memberToSet) {
     switch (memberToSet.presence.game.name) {
         case 'PLAYERUNKNOWN\'S BATTLEGROUNDS':
@@ -436,10 +442,12 @@ bot.on("message", async msg => {
                         message += ("\n" + key + ": " + help.commands[key].short);
                     }
                     msg.channel.send(message);
-                }else{
-                    if(help.commands[command[1]] == undefined){
+                }
+                else {
+                    if (help.commands[command[1]] == undefined) {
                         msg.channel.send(messagePrefixes.error + "Unknown command");
-                    }else{
+                    }
+                    else {
                         var message = "**" + command[1] + "**\n";
                         message += help.commands[command[1]].long;
                         message += "\n\n`";
@@ -463,6 +471,48 @@ bot.on("message", async msg => {
                     msg.channel.send(message);
                 }
                 break;
+
+            case "noot":
+            case "doot":
+            case "toot":
+                if (guilds[msg.guild.id].connection != null) {
+                    msg.channel.send("Sorry, can't do that while playing a song").then((response) => {
+                        setTimeout(() => {
+                            response.delete();
+                            msg.delete();
+                        }, 5000);
+                    });
+                }
+                else {
+                    if ((msg.mentions.members.first() && msg.mentions.members.first().voiceChannel)) {
+                        msg.mentions.members.first().voiceChannel.join().then((connection => {
+                            var d = connection.playFile(nootDootToot[command[0]]);
+                            d.on("end", () => {
+                                connection.disconnect();
+                                connection = null;
+                            });
+                        }));
+                        msg.delete();
+                    }
+                    else if (msg.member.voiceChannel) {
+                        msg.member.voiceChannel.join().then((connection => {
+                            var d = connection.playFile(nootDootToot[command[0]]);
+                            d.on("end", () => {
+                                connection.disconnect();
+                                connection = null;
+                            });
+                        }));
+                        msg.delete();
+                    }
+                    else {
+                        msg.channel.send("Target is not in a voice channel").then((response) => {
+                            setTimeout(() => {
+                                response.delete();
+                                msg.delete();
+                            }, 5000);
+                        });
+                    }
+                }
         }
     }
     catch (e) {

@@ -54,6 +54,21 @@
             "short": "Displays queue",
             "long": "Displays queue",
             "syntax": "Queue"
+        },
+        "noot": {
+            "short": "Noots",
+            "long": "Noots",
+            "syntax": "noot [user mention]"
+        },
+        "toot": {
+            "short": "Toots",
+            "long": "Toots",
+            "syntax": "toot [user mention]"
+        },
+        "doot": {
+            "short": "Doots",
+            "long": "Doots",
+            "syntax": "doot [user mention]"
         }
     },
     "about": "**Help for DorkBot commands**\nTo get help for a specific command, use help [command name].\nAll commands requires a prefix to run (defaults to `!`)\nParameters in <> are required, those in [] are optional."
