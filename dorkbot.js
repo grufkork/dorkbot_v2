@@ -121,7 +121,7 @@ bot.on("ready", () => {
     for (var [key, value] of bot.guilds) {
         guilds[key] = { dispatcher: null, search: [], queue: [], connection: null };
         if (config.conf[key] == undefined) {
-            config.conf[key] = { music: false, gameSort: false, botChannel: 0, name: value.name };
+            config.conf[key] = { music: false, gameSort: false, botChannel: 0, name: value.name, dev: false, prefix: "!" };
         }
 
         guilds[key].roles = {};
@@ -359,7 +359,7 @@ bot.on("message", async msg => {
                 break;
 
             case "stop":
-                if (guilds[msg.channel.id].dispatcher != null) {
+                if (guilds[msg.channel.guild.id].dispatcher != null) {
                     guilds[msg.channel.guild.id].queue = [];
                     guilds[msg.channel.guild.id].dispatcher.end();
                     msg.channel.send(":octagonal_sign: Stopped");
