@@ -349,7 +349,7 @@ bot.on("message", async msg => {
 
             case "skip":
             case "next":
-                if (guilds[msg.channel.id].dispatcher != null) {
+                if (guilds[msg.guild.id].dispatcher != null) {
                     msg.channel.send(":track_next: Skipped");
                     guilds[msg.channel.guild.id].dispatcher.end();
                 }
@@ -359,7 +359,7 @@ bot.on("message", async msg => {
                 break;
 
             case "stop":
-                if (guilds[msg.channel.guild.id].dispatcher != null) {
+                if (guilds[msg.guild.id].dispatcher != null) {
                     guilds[msg.channel.guild.id].queue = [];
                     guilds[msg.channel.guild.id].dispatcher.end();
                     msg.channel.send(":octagonal_sign: Stopped");
